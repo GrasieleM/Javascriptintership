@@ -1,0 +1,83 @@
+/*HTML5*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script src="rectangle.js"></script>
+</head>
+
+<body onLoad="setup();">
+<canvas id="diagram" width="500" height="500" style="border:2px solid black;"></canvas>
+<button type="button" onclick="forbutton()" >Create Rectangle</button>
+
+</body>
+</html>
+
+/*Script*/
+function Drawing(thecanvas){
+this.canvas=thecanvas;
+this.rectangle=rectangle;
+this.rnos=rnos;
+}
+
+function rectangle(x,y,w,h){
+var canvas = document.getElementById(this.canvas);
+var context = canvas.getContext('2d');
+
+context.beginPath();
+context.rect(x,y,w,h);
+context.stroke();
+}
+
+function rnos(min,max){
+var r;
+r=Math.floor(Math.random()*(max-min+1))+min;
+return r;
+}
+
+
+var test=new Drawing("diagram");
+var numberofrectangles=0;
+
+
+function forbutton(){
+var w;
+var h;
+var x;
+var y;
+var rects = [];
+cordx=test.rnos(0,500);
+cordy=test.rnos(0,500);
+width=test.rnos(10,100);
+height=test.rnos(10,100);
+var rect = {
+    x: cordx,
+    y: cordy,
+    w: width,
+    h: height
+}
+var ok = true;
+rects.forEach(function (item) {
+    if (isCollide(rect, item)) {
+        alert("collide");
+        ok = false;
+    }
+    else {
+        alert("no collision");
+    }
+}
+if (ok) {
+    context.fillrect(cordx, cordy, width, height);
+    rects.push(rect);
+    test.rectangle(cordx, cordy, width, height);
+}
+ else { break;}}
+
+ function isCollide(a, b) {
+     return !(
+         ((a.y + a.h) < (b.y)) ||
+         (a.y > (b.y + b.h)) ||
+         ((a.x + a.w) < b.x) ||
+         (a.x > (b.x + b.w))
+     );
+ }
