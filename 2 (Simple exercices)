@@ -1,0 +1,11 @@
+function word (str) {
+   list = new Array();
+   for(i=0;i<str.length;i++) {
+       for(j=i+1;j<str.length+1;j++) {
+           list.push(str.slice(i, j));
+       }
+   }
+   return list;
+}
+
+console.log(word("cat"));
