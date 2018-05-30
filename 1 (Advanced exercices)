@@ -1,0 +1,9 @@
+function name($var){
+console.log($var);
+}
+function go($var){
+console.log("goes to"+" "+ $var);
+}
+function buy($var){
+console.log("to buy"+" "+ $var);
+}
